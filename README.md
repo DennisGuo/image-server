@@ -2,6 +2,19 @@
 
 基于HTTP 的图片存储服务
 
+[下载地址](https://github.com/DennisGuo/image-server/releases)
+
+解压后的目录：
+
+```sh
+imageserver
+    ├── application.yml
+    ├── image-server-1.0.0.jar
+    ├── startup.bat
+    └── startup.sh
+
+```
+
 ## 配置文件
 
 - `application.yml`配置文件中
@@ -28,12 +41,12 @@
 ```
 
 - `h2data.mv.db` 用于存储图片属性和路径信息
-- `images` 目录根据图片上次时间按月份文件夹存放图片文件
+- `images` 目录根据图片上传时间按月份文件夹存放图片文件
 - `_thumb` 后缀的文件是图片的缩略图
 
 ## API
 
-- `/image/upload?width=?` 图片上传服务
+- `/image/upload?width={n}` 图片上传服务
     - HTTP POST
     - 参数`width`是用于生成缩略图的宽度，默认值：256
     - 图片文件使用表单方式提交`content-type: multipart/form-data`，字段名为`file`，
@@ -79,7 +92,7 @@
         }
     }
     ```
-- `/image?page=?&size=?&sort=?` 分页查询图片数据
+- `/image?page={n}&size={m}&sort={xxx.desc,xxx.asc}` 分页查询图片数据
     - HTTP GET    
     - `page` 分页，起始值为 `0`
     - `size` 每页数量，默认 `10`

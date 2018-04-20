@@ -9,19 +9,60 @@
     <title>Image Server</title>
 </head>
 <body>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        Image Server
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <span class="navbar-text">A Http Image Store Service.</span>
+
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/#/data">Explore </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">
-            Image Server
-        </a>
-        <span class="navbar-text">A HTTP Image Store Service.</span>
-    </nav>
 
-    <div class="row">
 
+    <br>
+
+    <div class="card ">
+        <div class="card-header">
+            Two steps to upload image data and image info entity.
+        </div>
+        <div class="card-body">
+            <h3 class="card-title">Step 1 : upload image to <b>/image/upload</b></h3>
+            <pre>&lt;form action=&quot;/image/upload&quot; method=&quot;post&quot;nctype=&quot;multipart/form-data&quot;&gt;&lt;/form&gt;</pre>
+            <form action="/image/upload" method="post" enctype="multipart/form-data" >
+                <div class="form-group mb-2">
+                    <label for="file">Please choose image file.</label>
+                    <input type="file" class="form-control-file" id="file" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary form-inline">Upload</button>
+            </form>
+
+            <hr>
+
+            <h3 class="card-title">Step 2 : upload image info entity to <b>/image</b></h3>
+            <p class="card-text">After upload image data we got the image path, and then upload image info entity in
+                json payload.</p>
+            <textarea name="imageinfo" rows="4" class="form-control">{"path":"xxx"}</textarea>
+        </div>
     </div>
 
 </div>
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
 </html>
