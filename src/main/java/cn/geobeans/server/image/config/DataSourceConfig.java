@@ -20,7 +20,7 @@ public class DataSourceConfig {
     @Bean
     DataSource getDataSource(){
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:~" + appProperty.getStorePath()+"/h2data;IFEXISTS=TRUE");
+        ds.setURL("jdbc:h2:" + appProperty.getStorePath()+"/h2data");
         ds.setUser("sa");
         ds.setPassword("sa");
 

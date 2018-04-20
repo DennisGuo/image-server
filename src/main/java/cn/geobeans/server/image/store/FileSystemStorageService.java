@@ -72,4 +72,9 @@ public class FileSystemStorageService implements StorageService {
     public String getRootLocation() {
         return rootLocation;
     }
+
+    @Override
+    public File getByImagePath(String imagePath) {
+        return new File(rootLocation+imagePath);
+    }
 }

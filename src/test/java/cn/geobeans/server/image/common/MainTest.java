@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
@@ -22,6 +25,15 @@ public class MainTest {
 
     @Test
     public void replace(){
-        System.out.println("sxsdwe2w3e.jpg".replace(".jpg","_thumb"+".jpg"));
+        System.out.println("/tmp/imageserver/images/20180420/1524210523437_thumb.jpg".replace("/tmp/imageserver/images",""));
+    }
+
+    @Test
+    public void contentType(){
+        try {
+            System.out.println(Files.probeContentType(Paths.get("/home/ghx/workspace/java/image-server/data/p1.jpg")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
