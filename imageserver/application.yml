@@ -1,0 +1,13 @@
+server:
+  port: 8888
+
+app:
+  store:
+    path: /tmp/imageserver
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    cn.geobeans: debug

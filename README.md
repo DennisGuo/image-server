@@ -6,6 +6,13 @@
 
 - `application.yml`配置文件中
     －　`app.store.path` 设置图片存放在磁盘的路径
+
+## 启动方式
+
+- 预先安装`java`执行环境 `jre` 或者 `jdk` `7.x` 已上
+- 修改存路径配置
+- `linux` 执行  `startup.sh`
+- `window` 执行 `startup.bat`
     
 ## 文件存储规则
 
