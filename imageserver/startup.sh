@@ -1,3 +1,3 @@
 #!/bin/sh
 
-java -jar ./image-server-1.0.0.jar >> ./app.log &
+java -jar ./image-server.jar >> ./app.log &

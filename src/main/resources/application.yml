@@ -2,6 +2,7 @@ server:
   port: 8888
 
 app:
+  version: v1.1.0
   store:
     path: /tmp/imageserver
 spring:

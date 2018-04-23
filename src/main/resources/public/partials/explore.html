@@ -2,6 +2,9 @@
 <div class="card ">
     <div class="card-header">
         Explore data.
+        <span class="float-right data-info">
+
+        </span>
     </div>
 
     <div class="card-body">
@@ -13,20 +16,16 @@
 
 <script id="temp-image-card" type="text/template">
     {{foreach m in rows}}
-    <div class="col">
-        <div class="card" >
-            <img class="card-img-top" src="/image{{m.pathThumbnail}}" alt="thumbnail">
-            {{if m.content}}
-            <div class="card-body">
-                {{foreach n in Object.keys(m.content)}}
-                    <dl class="row">
-                        <dt class="col">{{n}}</dt>
-                        <dd class="col">{{m.content[n]}}</dd>
-                    </dl>
-                {{end}}
-            </div>
-            {{fi}}
+
+    <div class="media mb-2">
+        <img class="mr-3" src="/image{{m.pathThumbnail}}" alt="thumbnail">
+        <div class="media-body">
+            <h5 class="mt-0">{{m.path}}</h5>
+            {{foreach k in m.contentKeys}}
+                {{k}}={{m.content[k]}} ;
+            {{end}}
         </div>
     </div>
+
     {{end}}
 </script>

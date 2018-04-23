@@ -1,4 +1,5 @@
-(function ($, page,T) {
+(function ($, Sammy,T) {
+    var app;
 
     $(init);
 
@@ -7,12 +8,22 @@
     }
 
     function router() {
-        page('/', index);
-        page('/explore', explore);
 
-        page();
+        app = Sammy('#content',function(){
+            var self = this;
 
-        page('/');
+            self.get('#/',index);
+            self.get('#/explore',explore);
+
+            self.after(renderMenu);
+        });
+
+        app.run('#/');
+    }
+
+    function renderMenu(){
+        var hash = window.location.hash;
+        $('.nav-link[href="'+hash+'"]').parent('.nav-item').addClass('active').siblings().removeClass('active');
     }
 
     //首页
@@ -43,8 +54,16 @@
         var url = '/image?page='+page+'&size=10';
         $.get(url,function(res){
             var box = $('.image-list');
+            var info = $('.data-info');
             if(res && res.success){
+                if(res.data && res.data.rows.length >0){
+                    for(var i =0 ;i<res.data.rows.length;i++){
+                        var item = res.data.rows[i];
+                        res.data.rows[i]['contentKeys'] = Object.keys(item.content);
+                    }
+                }
                 box.html(T.render($('#temp-image-card').html(),res.data));
+                info.html('<span class="text-muted">total='+res.data.total+' ; pages='+res.data.totalPage+'</span>');
             }else{
                 box.html('<div class="text-center bg-muted" >No data.</div>');
             }
@@ -94,4 +113,4 @@
         $('#content').load('/partials/' + name + '.html', callback);
     }
 
-}(window.jQuery, window.page,window.Tangular));
+}(window.jQuery, window.Sammy,window.Tangular));
