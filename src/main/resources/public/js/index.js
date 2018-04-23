@@ -71,21 +71,24 @@
     }
 
     function toPostImage() {
-        var area = $('textarea[name=content]');
-        var text = area.val();
-        if (!text.trim()) {
+        var area = $('textarea[name=payload]');
+        var text = area.val().trim();
+        if (!text) {
             alert('please input the image info content.');
         }
-        var payload = JSON.parse(text);
+
 
         $.ajax({
             url: '/image',
             method: 'POST',
             contentType: 'application/json',
-            data: payload,
+            data: text,
             dataType: 'json',
             success: function (res) {
+
                 area.hide();
+                $('.btn-post').hide();
+
                 var rs =  $('#postResult');
                 rs.html('<pre><code>' + JSON.stringify(res) + '</code></pre>');
                 rs.show();
@@ -95,15 +98,19 @@
     }
 
     function renderPayloadTextarea(response) {
-        var res = JSON.parse(response);
+        var res = response.data ;//JSON.parse(response);
 
-        if (res.data) {
-            res.data['content'] = {
-                "source": "测绘局",
-                "level": "一级",
-                "coordinate": [11.1, 22.2, 33.3, 44.4]
+        if (res) {
+            var payload = {
+                path: res.path,
+                pathThumbnail:res.pathThumbnail,
+                content:{
+                    "source": "测绘局",
+                    "level": "一级",
+                    "coordinate": [11.1, 22.2, 33.3, 44.4]
+                }
             };
-            $('textarea[name="content"]').text(JSON.stringify(res.data));
+            $('textarea[name="payload"]').val(JSON.stringify(payload));
         }
 
     }

@@ -16,10 +16,9 @@ public class ImageServiceTest {
     @Test
     public void save() {
         Image img = new Image();
-        img.setSource("测绘局");
-        img.setLevel("零级产品");
         img.setPath("/201804/xxx.jpg");
-        img.setCoordinate(new double[]{118.00018387498755,38.99993870833748,119.00018796109839,39.999942794448316});
+        img.setPathThumbnail("/201804/xxx_thumb.jpg");
+        img.setContent("{\"name\":\"image server\"}");
 
         Image rs = service.save(img);
 
