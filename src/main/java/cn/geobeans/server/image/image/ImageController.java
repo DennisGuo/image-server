@@ -115,17 +115,11 @@ public class ImageController {
 
         try {
             Image img = new Image();
-            img.setSource(body.getString("source"));
-            img.setLevel(body.getString("level"));
-            img.setPath(body.getString("path"));
-            img.setPathThumbnail(body.getString("pathThumbnail"));
+            String keyPath = "path" , keyPathThumb = "pathThumbnail";
+            img.setPath(body.getString(keyPath));
+            img.setPathThumbnail(body.getString(keyPathThumb));
 
-            JSONArray coord = body.getJSONArray("coordinate");
-            double[] coordinate = new double[coord.size()];
-            for (int i = 0; i < coord.size(); i++) {
-                coordinate[i] = coord.getDouble(i);
-            }
-            img.setCoordinate(coordinate);
+            img.setContent(body.getJSONObject("content").toJSONString());
 
             img = service.save(img);
 

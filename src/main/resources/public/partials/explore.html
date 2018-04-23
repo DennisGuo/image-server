@@ -1,0 +1,32 @@
+<br>
+<div class="card ">
+    <div class="card-header">
+        Explore data.
+    </div>
+
+    <div class="card-body">
+
+        <div class="row image-list"> </div>
+
+    </div>
+</div>
+
+<script id="temp-image-card" type="text/template">
+    {{foreach m in rows}}
+    <div class="col">
+        <div class="card" >
+            <img class="card-img-top" src="/image{{m.pathThumbnail}}" alt="thumbnail">
+            {{if m.content}}
+            <div class="card-body">
+                {{foreach n in Object.keys(m.content)}}
+                    <dl class="row">
+                        <dt class="col">{{n}}</dt>
+                        <dd class="col">{{m.content[n]}}</dd>
+                    </dl>
+                {{end}}
+            </div>
+            {{fi}}
+        </div>
+    </div>
+    {{end}}
+</script>
